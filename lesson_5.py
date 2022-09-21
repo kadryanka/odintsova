@@ -1,27 +1,27 @@
 #1
-#with open("HW_2.txt.txt","w",encoding="utf-8")as f:
-#     line = " "
-#     while line != "":
-#         line = input()
-#         print(line,file=f)
+with open("HW_2.txt.txt","w",encoding="utf-8")as f:
+    line = " "
+    while line != "":
+        line = input()
+        print(line,file=f)
 #2
-# with open("HW_1.txt","r",encoding="utf-8")as f:
-#     txt = f.readlines()
-#     for el, line in enumerate(txt,1):
-#         word = len(line.split())
-#         print(f"в {el} строке {word} слов")
+with open("HW_1.txt","r",encoding="utf-8")as f:
+    txt = f.readlines()
+    for el, line in enumerate(txt,1):
+        word = len(line.split())
+        print(f"в {el} строке {word} слов")
 
-# 3
-# oll_bonus = 0
-# oll_workers = 0
-# with open("HW_3.txt","r",encoding="utf-8") as f:
-#     for line in f:
-#         oll_bonus += float(line.split()[1])
-#         oll_workers = oll_workers + 1
-#         if float(line.split()[1])< 20000:
-#                 print((line.split()[0]))
-# print("средняя заработная плата :",round(oll_bonus/oll_workers,2))
-#
+#3
+oll_bonus = 0
+oll_workers = 0
+with open("HW_3.txt","r",encoding="utf-8") as f:
+    for line in f:
+        oll_bonus += float(line.split()[1])
+        oll_workers = oll_workers + 1
+        if float(line.split()[1])< 20000:
+                print((line.split()[0]))
+print("средняя заработная плата :",round(oll_bonus/oll_workers,2))
+
 # # 4
 
 my_f = {"One":"Один","Two":"Два","Three":"Три","Four":"Четыре"}
