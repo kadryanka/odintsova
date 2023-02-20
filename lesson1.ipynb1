@@ -1,0 +1,871 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "6512e3f4-4b3d-4611-8931-1edfc661067c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "88812286-e8f4-4a85-bfcc-66ff9d247452",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[ 1,  6],\n",
+       "       [ 2,  8],\n",
+       "       [ 3, 11],\n",
+       "       [ 3, 10],\n",
+       "       [ 1,  7]])"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a = np.array([[1,6],\n",
+    "             [2,8],\n",
+    "             [3,11],\n",
+    "             [3,10],\n",
+    "             [1,7]])\n",
+    "a"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "48b77ce5-6443-4ffd-8f55-2330d5c43d36",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "mean_a = a.mean(axis = 0)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "91fc95a0-1ba3-4f97-8ae2-c596396dbef1",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[2.  8.4]\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(mean_a)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "id": "665a14c1-ffe1-434c-97ae-b434479fcd1d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "a_centered = a-mean_a"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "fc0f3b2b-5eb7-4540-a783-691ae0ef4a5d",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[-1.  -2.4]\n",
+      " [ 0.  -0.4]\n",
+      " [ 1.   2.6]\n",
+      " [ 1.   1.6]\n",
+      " [-1.  -1.4]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(a_centered)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "id": "e370b509-d44a-4f9e-ac50-4ab632dbb25e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "a1 = a_centered[:,0]\n",
+    "a2 = a_centered[:,1]\n",
+    "a_centered_sp = np.dot(a1,a2)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "id": "576ef9e0-fdbb-4367-873d-7e6637baa1ff",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "8.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(a_centered_sp)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "id": "dbe1a904-4e87-4365-a905-5b1f2ce95dbf",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "n = a.shape[0]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "id": "e31e3a8c-f95a-4b82-b659-18ceefa45736",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "2.0"
+      ]
+     },
+     "execution_count": 29,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a_centered_sp/(n-1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "id": "6d6a3c62-f8b5-45d6-9a3a-a2e84c5b15c9",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[1. , 2. ],\n",
+       "       [2. , 4.3]])"
+      ]
+     },
+     "execution_count": 31,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "np.cov(a.transpose())\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "id": "9bb00060-863e-46e0-94e2-8721568eac10",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "id": "8dcd9da0-f418-4d59-b616-40812ec84f98",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>author_id</th>\n",
+       "      <th>author_name</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>Тургенев</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>2</td>\n",
+       "      <td>Чехов</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>3</td>\n",
+       "      <td>Островский</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   author_id author_name\n",
+       "0          1    Тургенев\n",
+       "1          2       Чехов\n",
+       "2          3  Островский"
+      ]
+     },
+     "execution_count": 36,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "authors = pd.DataFrame({'author_id':[1, 2, 3],\n",
+    "\n",
+    "'author_name':['Тургенев', 'Чехов', 'Островский']},\n",
+    "columns=['author_id', 'author_name'])\n",
+    "authors"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "id": "1970d2c6-e76d-4520-812b-c29a799c1213",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>author_id</th>\n",
+       "      <th>book_title</th>\n",
+       "      <th>price</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>Отцы и дети</td>\n",
+       "      <td>450</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1</td>\n",
+       "      <td>Рудин</td>\n",
+       "      <td>300</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1</td>\n",
+       "      <td>Дворянское гнездо</td>\n",
+       "      <td>350</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>2</td>\n",
+       "      <td>Толстый и тонкий</td>\n",
+       "      <td>500</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>2</td>\n",
+       "      <td>Дама с собачкой</td>\n",
+       "      <td>450</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>3</td>\n",
+       "      <td>Гроза</td>\n",
+       "      <td>370</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>3</td>\n",
+       "      <td>Таланты и поклонники</td>\n",
+       "      <td>290</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   author_id            book_title  price\n",
+       "0          1           Отцы и дети    450\n",
+       "1          1                 Рудин    300\n",
+       "2          1     Дворянское гнездо    350\n",
+       "3          2      Толстый и тонкий    500\n",
+       "4          2       Дама с собачкой    450\n",
+       "5          3                 Гроза    370\n",
+       "6          3  Таланты и поклонники    290"
+      ]
+     },
+     "execution_count": 38,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "books = pd.DataFrame({'author_id':[1, 1, 1, 2, 2, 3, 3],\n",
+    "\n",
+    "'book_title':['Отцы и дети', 'Рудин', 'Дворянское гнездо', 'Толстый и тонкий', 'Дама с собачкой', 'Гроза', 'Таланты и поклонники'],\n",
+    "\n",
+    "'price':[450, 300, 350, 500, 450, 370, 290]},\n",
+    "\n",
+    "columns=['author_id', 'book_title', 'price'])\n",
+    "books"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "id": "1d5b10de-997d-4baf-abaf-1146cc6b932d",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>author_id</th>\n",
+       "      <th>author_name</th>\n",
+       "      <th>book_title</th>\n",
+       "      <th>price</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>Тургенев</td>\n",
+       "      <td>Отцы и дети</td>\n",
+       "      <td>450</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1</td>\n",
+       "      <td>Тургенев</td>\n",
+       "      <td>Рудин</td>\n",
+       "      <td>300</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1</td>\n",
+       "      <td>Тургенев</td>\n",
+       "      <td>Дворянское гнездо</td>\n",
+       "      <td>350</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>2</td>\n",
+       "      <td>Чехов</td>\n",
+       "      <td>Толстый и тонкий</td>\n",
+       "      <td>500</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>2</td>\n",
+       "      <td>Чехов</td>\n",
+       "      <td>Дама с собачкой</td>\n",
+       "      <td>450</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>3</td>\n",
+       "      <td>Островский</td>\n",
+       "      <td>Гроза</td>\n",
+       "      <td>370</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>3</td>\n",
+       "      <td>Островский</td>\n",
+       "      <td>Таланты и поклонники</td>\n",
+       "      <td>290</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   author_id author_name            book_title  price\n",
+       "0          1    Тургенев           Отцы и дети    450\n",
+       "1          1    Тургенев                 Рудин    300\n",
+       "2          1    Тургенев     Дворянское гнездо    350\n",
+       "3          2       Чехов      Толстый и тонкий    500\n",
+       "4          2       Чехов       Дама с собачкой    450\n",
+       "5          3  Островский                 Гроза    370\n",
+       "6          3  Островский  Таланты и поклонники    290"
+      ]
+     },
+     "execution_count": 40,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "authors_price = pd.merge(authors, books, on = 'author_id', how = 'outer')\n",
+    "authors_price"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "id": "6170b75f-fddc-41d0-b588-23eff93c4caa",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>author_id</th>\n",
+       "      <th>author_name</th>\n",
+       "      <th>book_title</th>\n",
+       "      <th>price</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>2</td>\n",
+       "      <td>Чехов</td>\n",
+       "      <td>Толстый и тонкий</td>\n",
+       "      <td>500</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>Тургенев</td>\n",
+       "      <td>Отцы и дети</td>\n",
+       "      <td>450</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>2</td>\n",
+       "      <td>Чехов</td>\n",
+       "      <td>Дама с собачкой</td>\n",
+       "      <td>450</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>3</td>\n",
+       "      <td>Островский</td>\n",
+       "      <td>Гроза</td>\n",
+       "      <td>370</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1</td>\n",
+       "      <td>Тургенев</td>\n",
+       "      <td>Дворянское гнездо</td>\n",
+       "      <td>350</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   author_id author_name         book_title  price\n",
+       "3          2       Чехов   Толстый и тонкий    500\n",
+       "0          1    Тургенев        Отцы и дети    450\n",
+       "4          2       Чехов    Дама с собачкой    450\n",
+       "5          3  Островский              Гроза    370\n",
+       "2          1    Тургенев  Дворянское гнездо    350"
+      ]
+     },
+     "execution_count": 41,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "top5=authors_price.nlargest(5, 'price')\n",
+    "top5"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "id": "4f530624-ed8f-4a41-9a56-8f2ace7309ba",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>min_price</th>\n",
+       "      <th>max_price</th>\n",
+       "      <th>mean_price</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>author_name</th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>Островский</th>\n",
+       "      <td>290</td>\n",
+       "      <td>370</td>\n",
+       "      <td>330.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Тургенев</th>\n",
+       "      <td>300</td>\n",
+       "      <td>450</td>\n",
+       "      <td>366.666667</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Чехов</th>\n",
+       "      <td>450</td>\n",
+       "      <td>500</td>\n",
+       "      <td>475.000000</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "             min_price  max_price  mean_price\n",
+       "author_name                                  \n",
+       "Островский         290        370  330.000000\n",
+       "Тургенев           300        450  366.666667\n",
+       "Чехов              450        500  475.000000"
+      ]
+     },
+     "execution_count": 43,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df1 = authors_price.groupby('author_name').agg({'price': 'min'}).rename(columns={'price':'min_price'})\n",
+    "\n",
+    "df2 = authors_price.groupby('author_name').agg({'price': 'max'}).rename(columns={'price':'max_price'})\n",
+    "\n",
+    "df3 = authors_price.groupby('author_name').agg({'price': 'mean'}).rename(columns={'price':'mean_price'})\n",
+    "\n",
+    "authors_stat=pd.concat([df1, df2, df3], axis = 1)\n",
+    "authors_stat"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "id": "cbb3f8b2-1306-440d-8c98-37153fde04ea",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "\u001b[0;31mSignature:\u001b[0m\n",
+       "\u001b[0mpd\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mpivot_table\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\u001b[0m\n",
+       "\u001b[0;34m\u001b[0m    \u001b[0mdata\u001b[0m\u001b[0;34m:\u001b[0m \u001b[0;34m'DataFrame'\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\n",
+       "\u001b[0;34m\u001b[0m    \u001b[0mvalues\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;32mNone\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\n",
+       "\u001b[0;34m\u001b[0m    \u001b[0mindex\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;32mNone\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\n",
+       "\u001b[0;34m\u001b[0m    \u001b[0mcolumns\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;32mNone\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\n",
+       "\u001b[0;34m\u001b[0m    \u001b[0maggfunc\u001b[0m\u001b[0;34m:\u001b[0m \u001b[0;34m'AggFuncType'\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;34m'mean'\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\n",
+       "\u001b[0;34m\u001b[0m    \u001b[0mfill_value\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;32mNone\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\n",
+       "\u001b[0;34m\u001b[0m    \u001b[0mmargins\u001b[0m\u001b[0;34m:\u001b[0m \u001b[0;34m'bool'\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;32mFalse\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\n",
+       "\u001b[0;34m\u001b[0m    \u001b[0mdropna\u001b[0m\u001b[0;34m:\u001b[0m \u001b[0;34m'bool'\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;32mTrue\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\n",
+       "\u001b[0;34m\u001b[0m    \u001b[0mmargins_name\u001b[0m\u001b[0;34m:\u001b[0m \u001b[0;34m'str'\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;34m'All'\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\n",
+       "\u001b[0;34m\u001b[0m    \u001b[0mobserved\u001b[0m\u001b[0;34m:\u001b[0m \u001b[0;34m'bool'\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;32mFalse\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\n",
+       "\u001b[0;34m\u001b[0m    \u001b[0msort\u001b[0m\u001b[0;34m:\u001b[0m \u001b[0;34m'bool'\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;32mTrue\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\n",
+       "\u001b[0;34m\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m->\u001b[0m \u001b[0;34m'DataFrame'\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+       "\u001b[0;31mDocstring:\u001b[0m\n",
+       "Create a spreadsheet-style pivot table as a DataFrame.\n",
+       "\n",
+       "The levels in the pivot table will be stored in MultiIndex objects\n",
+       "(hierarchical indexes) on the index and columns of the result DataFrame.\n",
+       "\n",
+       "Parameters\n",
+       "----------\n",
+       "data : DataFrame\n",
+       "values : column to aggregate, optional\n",
+       "index : column, Grouper, array, or list of the previous\n",
+       "    If an array is passed, it must be the same length as the data. The\n",
+       "    list can contain any of the other types (except list).\n",
+       "    Keys to group by on the pivot table index.  If an array is passed,\n",
+       "    it is being used as the same manner as column values.\n",
+       "columns : column, Grouper, array, or list of the previous\n",
+       "    If an array is passed, it must be the same length as the data. The\n",
+       "    list can contain any of the other types (except list).\n",
+       "    Keys to group by on the pivot table column.  If an array is passed,\n",
+       "    it is being used as the same manner as column values.\n",
+       "aggfunc : function, list of functions, dict, default numpy.mean\n",
+       "    If list of functions passed, the resulting pivot table will have\n",
+       "    hierarchical columns whose top level are the function names\n",
+       "    (inferred from the function objects themselves)\n",
+       "    If dict is passed, the key is column to aggregate and value\n",
+       "    is function or list of functions.\n",
+       "fill_value : scalar, default None\n",
+       "    Value to replace missing values with (in the resulting pivot table,\n",
+       "    after aggregation).\n",
+       "margins : bool, default False\n",
+       "    Add all row / columns (e.g. for subtotal / grand totals).\n",
+       "dropna : bool, default True\n",
+       "    Do not include columns whose entries are all NaN.\n",
+       "margins_name : str, default 'All'\n",
+       "    Name of the row / column that will contain the totals\n",
+       "    when margins is True.\n",
+       "observed : bool, default False\n",
+       "    This only applies if any of the groupers are Categoricals.\n",
+       "    If True: only show observed values for categorical groupers.\n",
+       "    If False: show all values for categorical groupers.\n",
+       "\n",
+       "    .. versionchanged:: 0.25.0\n",
+       "\n",
+       "sort : bool, default True\n",
+       "    Specifies if the result should be sorted.\n",
+       "\n",
+       "    .. versionadded:: 1.3.0\n",
+       "\n",
+       "Returns\n",
+       "-------\n",
+       "DataFrame\n",
+       "    An Excel style pivot table.\n",
+       "\n",
+       "See Also\n",
+       "--------\n",
+       "DataFrame.pivot : Pivot without aggregation that can handle\n",
+       "    non-numeric data.\n",
+       "DataFrame.melt: Unpivot a DataFrame from wide to long format,\n",
+       "    optionally leaving identifiers set.\n",
+       "wide_to_long : Wide panel to long format. Less flexible but more\n",
+       "    user-friendly than melt.\n",
+       "\n",
+       "Notes\n",
+       "-----\n",
+       "Reference :ref:`the user guide <reshaping.pivot>` for more examples.\n",
+       "\n",
+       "Examples\n",
+       "--------\n",
+       ">>> df = pd.DataFrame({\"A\": [\"foo\", \"foo\", \"foo\", \"foo\", \"foo\",\n",
+       "...                          \"bar\", \"bar\", \"bar\", \"bar\"],\n",
+       "...                    \"B\": [\"one\", \"one\", \"one\", \"two\", \"two\",\n",
+       "...                          \"one\", \"one\", \"two\", \"two\"],\n",
+       "...                    \"C\": [\"small\", \"large\", \"large\", \"small\",\n",
+       "...                          \"small\", \"large\", \"small\", \"small\",\n",
+       "...                          \"large\"],\n",
+       "...                    \"D\": [1, 2, 2, 3, 3, 4, 5, 6, 7],\n",
+       "...                    \"E\": [2, 4, 5, 5, 6, 6, 8, 9, 9]})\n",
+       ">>> df\n",
+       "     A    B      C  D  E\n",
+       "0  foo  one  small  1  2\n",
+       "1  foo  one  large  2  4\n",
+       "2  foo  one  large  2  5\n",
+       "3  foo  two  small  3  5\n",
+       "4  foo  two  small  3  6\n",
+       "5  bar  one  large  4  6\n",
+       "6  bar  one  small  5  8\n",
+       "7  bar  two  small  6  9\n",
+       "8  bar  two  large  7  9\n",
+       "\n",
+       "This first example aggregates values by taking the sum.\n",
+       "\n",
+       ">>> table = pd.pivot_table(df, values='D', index=['A', 'B'],\n",
+       "...                     columns=['C'], aggfunc=np.sum)\n",
+       ">>> table\n",
+       "C        large  small\n",
+       "A   B\n",
+       "bar one    4.0    5.0\n",
+       "    two    7.0    6.0\n",
+       "foo one    4.0    1.0\n",
+       "    two    NaN    6.0\n",
+       "\n",
+       "We can also fill missing values using the `fill_value` parameter.\n",
+       "\n",
+       ">>> table = pd.pivot_table(df, values='D', index=['A', 'B'],\n",
+       "...                     columns=['C'], aggfunc=np.sum, fill_value=0)\n",
+       ">>> table\n",
+       "C        large  small\n",
+       "A   B\n",
+       "bar one      4      5\n",
+       "    two      7      6\n",
+       "foo one      4      1\n",
+       "    two      0      6\n",
+       "\n",
+       "The next example aggregates by taking the mean across multiple columns.\n",
+       "\n",
+       ">>> table = pd.pivot_table(df, values=['D', 'E'], index=['A', 'C'],\n",
+       "...                     aggfunc={'D': np.mean,\n",
+       "...                              'E': np.mean})\n",
+       ">>> table\n",
+       "                D         E\n",
+       "A   C\n",
+       "bar large  5.500000  7.500000\n",
+       "    small  5.500000  8.500000\n",
+       "foo large  2.000000  4.500000\n",
+       "    small  2.333333  4.333333\n",
+       "\n",
+       "We can also calculate multiple types of aggregations for any given\n",
+       "value column.\n",
+       "\n",
+       ">>> table = pd.pivot_table(df, values=['D', 'E'], index=['A', 'C'],\n",
+       "...                     aggfunc={'D': np.mean,\n",
+       "...                              'E': [min, max, np.mean]})\n",
+       ">>> table\n",
+       "                  D   E\n",
+       "               mean max      mean  min\n",
+       "A   C\n",
+       "bar large  5.500000   9  7.500000    6\n",
+       "    small  5.500000   9  8.500000    8\n",
+       "foo large  2.000000   5  4.500000    4\n",
+       "    small  2.333333   6  4.333333    2\n",
+       "\u001b[0;31mFile:\u001b[0m      /opt/conda/envs/anaconda-2022.05-py39/lib/python3.9/site-packages/pandas/core/reshape/pivot.py\n",
+       "\u001b[0;31mType:\u001b[0m      function\n"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "?pd.pivot_table"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1c77a889-213b-4980-b314-437c0e1b4538",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "61834403-ebbe-4941-8985-31b7886fc2e0",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "anaconda-2022.05-py39",
+   "language": "python",
+   "name": "conda-env-anaconda-2022.05-py39-py"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.12"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
